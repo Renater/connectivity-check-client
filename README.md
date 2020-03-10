@@ -1,4 +1,4 @@
-# Coco client
+# Connectivity Check client
 
 A Java Spring-Boot client to consume eduGAIN Connectivity Check results.
 

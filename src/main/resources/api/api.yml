@@ -1,0 +1,596 @@
+swagger: "2.0"
+info:
+  description: "eduGAIN Connectivity check JSON interface contract"
+  version: "1.0.0"
+  title: "Connectivity Check"
+  termsOfService: "https://wiki.geant.org/display/eduGAIN/eduGAIN+Connectivity+Check"
+host: "technical.edugain.org"
+basePath: "/eccs/services/json_api.php"
+tags:
+- name: connectivity-check
+schemes:
+- https
+paths:
+  # /:
+  #   get:
+  #     description: List all the checks on the eduGAIN IdPs performed by eduGAIN Connectivity Check service.
+  #     tags:
+  #     - connectivity-check
+  #     operationId: getChecks
+  #     produces:
+  #     - application/json
+  #     responses:
+  #       200:
+  #         description: Ok
+  #         schema:
+  #           $ref: "#/definitions/ChecksResult"
+  #   parameters:
+  #   - name: action
+  #     in: query
+  #     required: true
+  #     type: string
+  #     description: Value MUST be 'checks'
+  #   - name: f_order
+  #     in: query
+  #     required: false
+  #     type: string
+  #     enum:
+  #       - All
+  #       - displayName
+  #       - entityID
+  #       - registrationAuthority
+  #       - ignoreEntity
+  #       - lastCheck
+  #       - currentResult
+  #     description: |
+  #         All: no order
+  #         displayName: order by DisplayName
+  #         entityID: order by entityID
+  #         registrationAuthority (only for "entities" action): order by registrationAuthority
+  #         ignoreEntity: order by ignoredEntity
+  #         lastCheck: order by last check
+  #         currentResult: order by last result
+  #   - name: f_order_direction
+  #     in: query
+  #     required: false
+  #     type: string
+  #     enum:
+  #       - ASC
+  #       - DESC
+  #     description: |
+  #       ASC: ascending order
+  #       DESC: descending order
+  #   - name: f_entityID
+  #     in: query
+  #     required: false
+  #     type: string
+  #     description: |
+  #       All: consider all entityIDs
+  #       A specific IdP's entityID value: consider only a specific one
+  #   - name: f_registrationAuthority
+  #     in: query
+  #     required: false
+  #     type: string
+  #     description: |
+  #       All: consider all registrationAuthorities
+  #       A specific registrationAuthority value: consider only a specific one
+  #   - name: f_displayName
+  #     in: query
+  #     required: false
+  #     type: string
+  #     description: |
+  #       All: consider all DisplayName
+  #       A specific IdP's DisplayName value: consider only a specific one
+  #   - name: f_ignore_entity
+  #     in: query
+  #     required: false
+  #     type: boolean
+  #     description: |
+  #       True: for the entities that are ignored (by the service owner).
+  #       False: for the entities that are considered (by the service owner).
+  #   - name: f_current_result (for only "checks" action)
+  #     in: query
+  #     required: false
+  #     type: string
+  #     enum:
+  #       - All
+  #       - OK
+  #       - FORM-Invalid
+  #       - HTTP-Error
+  #       - TCP/IP-Error
+  #     description: |
+  #       All: consider all IdPs
+  #       OK: consider only IdP that have received an "OK" from the check script.
+  #       FORM-Invalid: consider only IdP that have received an "FORM-Invalid" from the check script
+  #       HTTP-Error: consider only IdP that have received an "HTTP-Error" from the check script
+  #       TCP/IP-Error: consider only IdP that have received an "TCP/IP-Error" from the check script
+  #   - name: rpp
+  #     in: query
+  #     required: false
+  #     type: string
+  #     description: |
+  #        All: Show all entities
+  #        20: Show 20 entities per page. (default value: 30)
+  # /:
+  #   get:
+  #     description: List all the checks on the eduGAIN IdPs performed by eduGAIN Connectivity Check service.
+  #     tags:
+  #     - connectivity-check
+  #     operationId: getEntities
+  #     produces:
+  #     - application/json
+  #     responses:
+  #       200:
+  #         description: Ok
+  #         schema:
+  #           $ref: "#/definitions/EntitiesResult"
+  #   parameters:
+  #   - name: action
+  #     in: query
+  #     required: true
+  #     type: string
+  #     description: Value MUST be 'entities'
+  #   - name: f_order
+  #     in: query
+  #     required: false
+  #     type: string
+  #     enum:
+  #       - All
+  #       - displayName
+  #       - entityID
+  #       - registrationAuthority
+  #       - ignoreEntity
+  #       - lastCheck
+  #       - currentResult
+  #     description: |
+  #         All: no order
+  #         displayName: order by DisplayName
+  #         entityID: order by entityID
+  #         registrationAuthority (only for "entities" action): order by registrationAuthority
+  #         ignoreEntity: order by ignoredEntity
+  #         lastCheck: order by last check
+  #         currentResult: order by last result
+  #   - name: f_order_direction
+  #     in: query
+  #     required: false
+  #     type: string
+  #     enum:
+  #       - ASC
+  #       - DESC
+  #     description: |
+  #       ASC: ascending order
+  #       DESC: descending order
+  #   - name: f_entityID
+  #     in: query
+  #     required: false
+  #     type: string
+  #     description: |
+  #       All: consider all entityIDs
+  #       A specific IdP's entityID value: consider only a specific one
+  #   - name: f_registrationAuthority
+  #     in: query
+  #     required: false
+  #     type: string
+  #     description: |
+  #       All: consider all registrationAuthorities
+  #       A specific registrationAuthority value: consider only a specific one
+  #   - name: f_displayName
+  #     in: query
+  #     required: false
+  #     type: string
+  #     description: |
+  #       All: consider all DisplayName
+  #       A specific IdP's DisplayName value: consider only a specific one
+  #   - name: f_ignore_entity
+  #     in: query
+  #     required: false
+  #     type: boolean
+  #     description: |
+  #       True: for the entities that are ignored (by the service owner).
+  #       False: for the entities that are considered (by the service owner).
+  #   - name: f_current_result (for only "checks" action)
+  #     in: query
+  #     required: false
+  #     type: string
+  #     enum:
+  #       - All
+  #       - OK
+  #       - FORM-Invalid
+  #       - HTTP-Error
+  #       - TCP/IP-Error
+  #     description: |
+  #       All: consider all IdPs
+  #       OK: consider only IdP that have received an "OK" from the check script.
+  #       FORM-Invalid: consider only IdP that have received an "FORM-Invalid" from the check script
+  #       HTTP-Error: consider only IdP that have received an "HTTP-Error" from the check script
+  #       TCP/IP-Error: consider only IdP that have received an "TCP/IP-Error" from the check script
+  #   - name: rpp
+  #     in: query
+  #     required: false
+  #     type: string
+  #     description: |
+  #        All: Show all entities
+  #        20: Show 20 entities per page. (default value: 30)
+  # /:
+  #   get:
+  #     description: List all the checks on the eduGAIN IdPs performed by eduGAIN Connectivity Check service.
+  #     tags:
+  #     - connectivity-check
+  #     operationId: getFedStats
+  #     produces:
+  #     - application/json
+  #     responses:
+  #       200:
+  #         description: Ok
+  #         schema:
+  #           $ref: "#/definitions/FedStatsResult"
+  #   parameters:
+  #   - name: action
+  #     in: query
+  #     required: true
+  #     type: string
+  #     description: Value MUST be 'fedstats'
+  #   - name: f_order
+  #     in: query
+  #     required: false
+  #     type: string
+  #     enum:
+  #       - All
+  #       - displayName
+  #       - entityID
+  #       - registrationAuthority
+  #       - ignoreEntity
+  #       - lastCheck
+  #       - currentResult
+  #     description: |
+  #         All: no order
+  #         displayName: order by DisplayName
+  #         entityID: order by entityID
+  #         registrationAuthority (only for "entities" action): order by registrationAuthority
+  #         ignoreEntity: order by ignoredEntity
+  #         lastCheck: order by last check
+  #         currentResult: order by last result
+  #   - name: f_order_direction
+  #     in: query
+  #     required: false
+  #     type: string
+  #     enum:
+  #       - ASC
+  #       - DESC
+  #     description: |
+  #       ASC: ascending order
+  #       DESC: descending order
+  #   - name: f_entityID
+  #     in: query
+  #     required: false
+  #     type: string
+  #     description: |
+  #       All: consider all entityIDs
+  #       A specific IdP's entityID value: consider only a specific one
+  #   - name: f_registrationAuthority
+  #     in: query
+  #     required: false
+  #     type: string
+  #     description: |
+  #       All: consider all registrationAuthorities
+  #       A specific registrationAuthority value: consider only a specific one
+  #   - name: f_displayName
+  #     in: query
+  #     required: false
+  #     type: string
+  #     description: |
+  #       All: consider all DisplayName
+  #       A specific IdP's DisplayName value: consider only a specific one
+  #   - name: f_ignore_entity
+  #     in: query
+  #     required: false
+  #     type: boolean
+  #     description: |
+  #       True: for the entities that are ignored (by the service owner).
+  #       False: for the entities that are considered (by the service owner).
+  #   - name: f_current_result (for only "checks" action)
+  #     in: query
+  #     required: false
+  #     type: string
+  #     enum:
+  #       - All
+  #       - OK
+  #       - FORM-Invalid
+  #       - HTTP-Error
+  #       - TCP/IP-Error
+  #     description: |
+  #       All: consider all IdPs
+  #       OK: consider only IdP that have received an "OK" from the check script.
+  #       FORM-Invalid: consider only IdP that have received an "FORM-Invalid" from the check script
+  #       HTTP-Error: consider only IdP that have received an "HTTP-Error" from the check script
+  #       TCP/IP-Error: consider only IdP that have received an "TCP/IP-Error" from the check script
+  #   - name: rpp
+  #     in: query
+  #     required: false
+  #     type: string
+  #     description: |
+  #        All: Show all entities
+  #        20: Show 20 entities per page. (default value: 30)
+
+  /:
+    get:
+      description: If called without parameters feed shows only "green" and "yellow" entities (entities with id_status=2 or id_status=3).
+      tags:
+      - connectivity-check
+      operationId: getStatus
+      produces:
+      - application/json
+      responses:
+        200:
+          description: Ok
+          schema:
+            $ref: "#/definitions/ConnectivityCheckResult"
+    parameters:
+    - name: action
+      in: query
+      description: |
+        entities: List all the eduGAIN Connectivity Check service results.
+        checks: List all the checks on the eduGAIN IdPs performed by eduGAIN Connectivity Check service.
+        fedstats:	List all the federation statistics collected by the eduGAIN Connectivity Check service.
+      required: true
+      type: string
+      enum:
+        - entities
+        - checks
+        - fedstats
+    - name: f_order
+      in: query
+      required: false
+      type: string
+      enum:
+        - All
+        - displayName
+        - entityID
+        - registrationAuthority
+        - ignoreEntity
+        - lastCheck
+        - currentResult
+      description: |
+          All: no order
+          displayName: order by DisplayName
+          entityID: order by entityID
+          registrationAuthority (only for "entities" action): order by registrationAuthority
+          ignoreEntity: order by ignoredEntity
+          lastCheck: order by last check
+          currentResult: order by last result
+    - name: f_order_direction
+      in: query
+      required: false
+      type: string
+      enum:
+        - ASC
+        - DESC
+      description: |
+        ASC: ascending order
+        DESC: descending order
+    - name: f_entityID
+      in: query
+      required: false
+      type: string
+      description: |
+        All: consider all entityIDs
+        A specific IdP's entityID value: consider only a specific one
+    - name: f_registrationAuthority
+      in: query
+      required: false
+      type: string
+      description: |
+        All: consider all registrationAuthorities
+        A specific registrationAuthority value: consider only a specific one
+    - name: f_displayName
+      in: query
+      required: false
+      type: string
+      description: |
+        All: consider all DisplayName
+        A specific IdP's DisplayName value: consider only a specific one
+    - name: f_ignore_entity
+      in: query
+      required: false
+      type: boolean
+      description: |
+        True: for the entities that are ignored (by the service owner).
+        False: for the entities that are considered (by the service owner).
+    - name: f_current_result (for only "checks" action)
+      in: query
+      required: false
+      type: string
+      enum:
+        - All
+        - OK
+        - FORM-Invalid
+        - HTTP-Error
+        - TCP/IP-Error
+      description: |
+        All: consider all IdPs
+        OK: consider only IdP that have received an "OK" from the check script.
+        FORM-Invalid: consider only IdP that have received an "FORM-Invalid" from the check script
+        HTTP-Error: consider only IdP that have received an "HTTP-Error" from the check script
+        TCP/IP-Error: consider only IdP that have received an "TCP/IP-Error" from the check script
+    - name: rpp
+      in: query
+      required: false
+      type: string
+      description: |
+         All: Show all entities
+         20: Show 20 entities per page. (default value: 30)
+
+definitions:
+  ConnectivityCheckResult:
+    type: object
+    properties:
+      results:
+        type: array
+        items:
+          $ref: "#/definitions/Result"
+      num_rows:
+        type: integer
+      page:
+        type: integer
+      total_pages:
+        type: integer
+  Result:
+    type: object
+    properties:
+      checkID:
+        description: Provided when action='checks'
+        type: integer
+      entityID:
+        description: Provided when action='entities' or action='checks'
+        type: string
+      spEntityID:
+        description: Provided when action='checks'
+        type: string
+      checkTime:
+        description: Provided when action='checks'
+        type: string
+      registrationAuthority:
+        description: Provided when action='entities' or action='fedstats'
+        type: string
+      displayName:
+        description: Provided when action='entities'
+        type: string
+      technicalContacts:
+        description: Provided when action='entities'
+        type: string
+      supportContacts:
+        description: Provided when action='entities'
+        type: string
+      ignoreEntity:
+        description: Provided when action='entities'
+        type: boolean
+      ignoreReason:
+        description: Provided when action='entities'
+        type: string
+      lastCheck:
+        description: Provided when action='entities'
+        type: string
+      currentResult:
+        description: Provided when action='entities' or action='fedstats'
+        type: string
+      previousResult:
+        description: Provided when action='entities'
+        type: string
+      serviceLocation:
+        description: Provided when action='entities'
+        type: string
+      css_class:
+        description: Provided when action='entities' or action='checks' or action='fedstats'
+        type: string
+      httpStatusCode:
+        description: Provided when action='checks'
+        type: integer
+      checkResult:
+        description: Provided when action='checks'
+        type: string
+      acsUrl:
+        description: Provided when action='checks'
+        type: string
+      serviceLocation:
+        description: Provided when action='checks'
+        type: string
+      checkDate:
+        description: Provided when action='fedstats'
+        type: string
+      numIdPs:
+        description: Provided when action='fedstats'
+        type: integer
+  # EntityResult:
+  #   type: object
+  #   properties:
+  #     entityID:
+  #       type: string
+  #     registrationAuthority:
+  #       type: string
+  #     displayName:
+  #       type: string
+  #     technicalContacts:
+  #       type: string
+  #     supportContacts:
+  #       type: string
+  #     ignoreEntity:
+  #       type: boolean
+  #     ignoreReason:
+  #       type: string
+  #     lastCheck:
+  #       type: string
+  #     currentResult:
+  #       type: string
+  #     previousResult:
+  #       type: string
+  #     serviceLocation:
+  #       type: string
+  #     css_class:
+  #       type: string
+  # CheckResult:
+  #   type: object
+  #   properties:
+  #     checkID:
+  #         type: integer
+  #     entityID:
+  #         type: string
+  #     spEntityID:
+  #         type: string
+  #     checkTime:
+  #     # TODO: try format date-time
+  #         type: string
+  #     httpStatusCode:
+  #         type: integer
+  #     checkResult:
+  #         type: string
+  #     acsUrl:
+  #         type: string
+  #     serviceLocation:
+  #         type: string
+  #     css_class:
+  #         type: string
+  # FedStatResult:
+  #   type: object
+  #   properties:
+  #     checkDate:
+  #         type: string
+  #     registrationAuthority:
+  #         type: string
+  #     currentResult:
+  #         type: string
+  #     css_class:
+  #         type: string
+  #     numIdPs:
+  #         type: integer
+  # FedStatsResult:
+  #   properties:
+  #     results:
+  #       type: array
+  #       items:
+  #         $ref: "#/definitions/FedStatResult"
+  # ChecksResult:
+  #   type: object
+  #   properties:
+  #     results:
+  #       type: array
+  #       items:
+  #         $ref: "#/definitions/CheckResult"
+  #     num_rows:
+  #       type: integer
+  #     page:
+  #       type: integer
+  #     total_pages:
+  #       type: integer
+  # EntitiesResult:
+  #   type: object
+  #   properties:
+  #     results:
+  #       type: array
+  #       items:
+  #         $ref: "#/definitions/EntityResult"
+  #     num_rows:
+  #       type: integer
+  #     page:
+  #       type: integer
+  #     total_pages:
+  #       type: integer

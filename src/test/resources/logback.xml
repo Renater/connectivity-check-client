@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration>
+
+<configuration scan="true">
+	<include
+		resource="org/springframework/boot/logging/logback/base.xml" />
+
+	<logger name="org.edugain.monitor.connectivity.client" level="DEBUG" />
+
+	<root level="WARN">
+		<appender-ref ref="CONSOLE" />
+	</root>
+
+</configuration>

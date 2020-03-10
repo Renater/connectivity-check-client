@@ -1,0 +1,8 @@
+
+application:
+  clients:
+    connectivityCheck:
+      skipCertificate: false
+      basePath: https://technical.edugain.org/eccs/services/json_api.php
+      connectTimeout: 5000
+      readTimeout: 30000

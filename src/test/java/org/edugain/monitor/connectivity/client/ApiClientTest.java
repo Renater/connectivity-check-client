@@ -26,6 +26,12 @@ import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.AbstractJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
+import org.threeten.bp.Instant;
+import org.threeten.bp.OffsetDateTime;
+import org.threeten.bp.ZonedDateTime;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.threetenbp.ThreeTenModule;
 
 /**
  * Simple tests
@@ -72,7 +78,7 @@ public class ApiClientTest extends BaseTest {
 
 		RestTemplate rt = builder.requestFactory(() -> new BufferingClientHttpRequestFactory(reqFactory)).build();
 
-		for (HttpMessageConverter converter : rt.getMessageConverters()) {
+		for (HttpMessageConverter<?> converter : rt.getMessageConverters()) {
 			// If converters need some tweaks...
 			if (converter instanceof AbstractJackson2HttpMessageConverter) {
 				// Workaround text/html media type
@@ -80,6 +86,16 @@ public class ApiClientTest extends BaseTest {
 				supportedMediaTypes.addAll(((AbstractJackson2HttpMessageConverter) converter).getSupportedMediaTypes());
 				supportedMediaTypes.add(MediaType.TEXT_HTML);
 				((AbstractJackson2HttpMessageConverter) converter).setSupportedMediaTypes(supportedMediaTypes);
+			}
+
+			if (converter instanceof AbstractJackson2HttpMessageConverter) {
+				ObjectMapper mapper = ((AbstractJackson2HttpMessageConverter) converter).getObjectMapper();
+				ThreeTenModule module = new ThreeTenModule();
+				module.addDeserializer(Instant.class, ConnectivityCheckCustomInstantDeserializer.INSTANT);
+				module.addDeserializer(OffsetDateTime.class,
+						ConnectivityCheckCustomInstantDeserializer.OFFSET_DATE_TIME);
+				module.addDeserializer(ZonedDateTime.class, ConnectivityCheckCustomInstantDeserializer.ZONED_DATE_TIME);
+				mapper.registerModule(module);
 			}
 		}
 

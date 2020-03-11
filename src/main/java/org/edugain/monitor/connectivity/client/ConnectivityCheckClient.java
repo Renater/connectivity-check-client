@@ -145,12 +145,7 @@ public class ConnectivityCheckClient {
 		this.apiClient = apiClient;
 	}
 
-	/**
-	 * Just for UnitTests
-	 *
-	 * @return
-	 */
-	protected RestTemplate getRestTemplate() {
+	public RestTemplate getRestTemplate() {
 		return restTemplate;
 	}
 

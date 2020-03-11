@@ -1,6 +1,6 @@
 package org.edugain.monitor.connectivity.client;
 
-import static org.junit.Assume.assumeFalse;
+import static org.junit.Assume.assumeTrue;
 
 import java.io.IOException;
 import java.util.List;
@@ -27,9 +27,13 @@ public class BaseTest extends Assertions {
 			@Override
 			public ClientHttpResponse intercept(HttpRequest request, byte[] body, ClientHttpRequestExecution execution)
 					throws IOException {
-				ClientHttpResponse response = execution.execute(request, body);
-				assumeFalse(response.getStatusCode().is5xxServerError());
-				return response;
+				try {
+					ClientHttpResponse response = execution.execute(request, body);
+					return response;
+				} catch (Exception e) {
+					assumeTrue(false);
+					return null;
+				}
 			}
 		};
 

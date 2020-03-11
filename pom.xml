@@ -5,7 +5,7 @@
 	<groupId>org.edugain.monitor</groupId>
 	<artifactId>connectivity-check-client</artifactId>
 	<packaging>jar</packaging>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>connectivity-check-client</name>
 
 	<url>https://wiki.geant.org/display/eduGAIN/eduGAIN+Connectivity+Check</url>

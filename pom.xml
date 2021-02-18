@@ -50,7 +50,7 @@
 		<spring.version>5.0.16.RELEASE</spring.version>
 		<jackson-databind-nullable.version>0.2.0</jackson-databind-nullable.version>
 		<jsr305.version>3.0.2</jsr305.version>
-		<jackson.version>2.10.3</jackson.version>
+		<jackson.version>2.12.1</jackson.version>
 	</properties>
 
 	<dependencies>

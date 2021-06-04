@@ -45,7 +45,7 @@
 		<junit.version>4.12</junit.version>
 		<spring-boot.version>2.0.9.RELEASE</spring-boot.version>
 		<assertj.version>3.9.1</assertj.version>
-		<httpclient.version>4.5.6</httpclient.version>
+		<httpclient.version>4.5.13</httpclient.version>
 		<jackson-threetenbp.version>2.6.4</jackson-threetenbp.version>
 		<spring.version>5.0.16.RELEASE</spring.version>
 		<jackson-databind-nullable.version>0.2.0</jackson-databind-nullable.version>

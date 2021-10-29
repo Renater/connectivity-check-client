@@ -178,9 +178,6 @@ definitions:
       previousResult:
         description: Provided when action='entities'
         type: string
-      serviceLocation:
-        description: Provided when action='entities'
-        type: string
       css_class:
         description: Provided when action='entities' or action='checks' or action='fedstats'
         type: string

@@ -18,7 +18,8 @@ import org.edugain.monitor.connectivity.ApiClient;
 import org.edugain.monitor.connectivity.api.ConnectivityCheckApi;
 import org.edugain.monitor.connectivity.model.ConnectivityCheckResult;
 import org.edugain.monitor.connectivity.model.Constants;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.MediaType;
 import org.springframework.http.client.BufferingClientHttpRequestFactory;
@@ -39,6 +40,7 @@ import com.fasterxml.jackson.datatype.threetenbp.ThreeTenModule;
  * @author arnoud
  *
  */
+@Disabled
 public class ApiClientTest extends BaseTest {
 
 	@Test

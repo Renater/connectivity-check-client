@@ -1,6 +1,7 @@
 package org.edugain.monitor.connectivity.client;
 
-import static org.junit.Assume.assumeTrue;
+//import static org.junit.Assume.assumeTrue;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 import java.io.IOException;
 import java.util.List;

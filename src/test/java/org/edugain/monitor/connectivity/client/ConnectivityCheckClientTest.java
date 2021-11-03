@@ -14,9 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-//@RunWith(SpringRunner.class)
-//@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
-//@ContextConfiguration(classes = { TestConfig.class })
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = TestConfig.class)
 @Disabled
